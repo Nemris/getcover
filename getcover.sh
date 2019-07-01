@@ -14,9 +14,9 @@ checkdeps(){
 
 getcover(){
     local baseurl
-    baseurl="https://art.gametdb.com/ds/coverDS/EN"
+    baseurl="https://art.gametdb.com/ds/coverS/EN"
 
-    wget -nv --compression=auto "$baseurl/$1.bmp"
+    wget -nv --compression=auto "$baseurl/$1.png"
 }
 
 gettid(){
