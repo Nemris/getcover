@@ -16,7 +16,7 @@ getcover() {
 	local baseurl
 	baseurl="https://art.gametdb.com/ds/coverS/EN"
 
-	if [[ `wget --spider "$baseurl/$1.png"  2>&1 | grep '404'` ]]; then
+	if [[ $(wget --spider "$baseurl/$1.png" 2>&1 | grep '404') ]]; then
 		baseurl="https://art.gametdb.com/ds/coverS/US"
 	fi
 
