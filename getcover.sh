@@ -1,6 +1,6 @@
 #!/bin/bash
 
-checkdeps(){
+checkdeps() {
     local deps
     deps="awk wget xxd"
 
@@ -12,17 +12,33 @@ checkdeps(){
     done
 }
 
-getcover(){
+searchcover() {
     local baseurl
-    baseurl="https://art.gametdb.com/ds/coverS/EN"
+    local lid
+    local langs
+    baseurl="https://art.gametdb.com/ds/coverS"
+    lid="EN"
+    langs=(US JA DE FR KO)
+    echo "Searching for $1..."
 
-    wget -nv --compression=auto "$baseurl/$1.png"
+    if wget --spider "$baseurl/$lid/$1.png" 2>&1 | grep -q '404'; then
+        for i in "${langs[@]}"; do
+            lid="$i"
+            getcover "$baseurl/$lid/$1.png"
+        done
+    fi
+
+    getcover "$baseurl/$lid/$1.png"
 }
 
-gettid(){
+gettid() {
     if [ -f "$1" ]; then
         xxd -s 12 -l 4 "$1" | awk '{print $4}'
     fi
+}
+
+getcover() {
+    wget -q -nc --compression=auto "$1"
 }
 
 checkdeps
@@ -44,5 +60,5 @@ for i in "$@"; do
         tid="$(echo "$i" | awk '{print toupper($0)}')"
     fi
 
-    getcover "$tid"
+    searchcover "$tid"
 done
