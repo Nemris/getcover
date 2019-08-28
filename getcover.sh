@@ -21,14 +21,12 @@ searchcover() {
     langs=(US JA DE FR KO)
     echo "Searching for $1..."
 
-    if wget --spider "$baseurl/$lid/$1.png" 2>&1 | grep -q '404'; then
+    if ! getcover "$baseurl/$lid/$1.png"; then
         for i in "${langs[@]}"; do
             lid="$i"
             getcover "$baseurl/$lid/$1.png"
         done
     fi
-
-    getcover "$baseurl/$lid/$1.png"
 }
 
 gettid() {
