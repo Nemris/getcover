@@ -19,13 +19,18 @@ searchcover() {
     baseurl="https://art.gametdb.com/ds/coverS"
     lid="EN"
     langs=(US JA DE FR KO)
-    echo "Searching for $1..."
 
     if ! getcover "$baseurl/$lid/$1.png"; then
         for i in "${langs[@]}"; do
             lid="$i"
             getcover "$baseurl/$lid/$1.png"
+            status=$?
         done
+    fi
+
+    # file not found or no connection available
+    if [ $status -ne 0 ]; then
+        echo "$1: cover download failed." 1>&2
     fi
 }
 
