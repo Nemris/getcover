@@ -18,7 +18,7 @@ searchcover() {
     local langs
     baseurl="https://art.gametdb.com/ds/coverS"
     lid="EN"
-    langs=(US JA DE FR)
+    langs=(US JA DE FR KO)
     echo "Searching for $1..."
 
     if wget --spider "$baseurl/$lid/$1.png" 2>&1 | grep -q '404'; then
