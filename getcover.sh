@@ -38,7 +38,7 @@ gettid() {
 }
 
 getcover() {
-    wget -q -nc --compression=auto "$1"
+    wget -q --compression=auto "$1"
 }
 
 checkdeps
