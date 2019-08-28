@@ -25,11 +25,16 @@ searchcover() {
             lid="$i"
             getcover "$baseurl/$lid/$1.png"
             status=$?
+            # exits for loop on first success preventing failed message per array language
+            if [ "${status:-0}" -eq 0 ]; then 
+                break
+            fi
         done
     fi
 
     # file not found or no connection available
-    if [ $status -ne 0 ]; then
+    # "${status:-0}" fix [: -ne: unary operator expected and [: : integer expression expected
+    if [ "${status:-0}" -ne 0 ]; then 
         echo "$1: cover download failed." 1>&2
     fi
 }
@@ -41,7 +46,8 @@ gettid() {
 }
 
 getcover() {
-    wget -q --compression=auto "$1"
+    # '-nc' ||'--no-clobber', overwrites the file instead of creating multiple files if they already exits
+    wget -q -nc --compression=auto "$1"
 }
 
 checkdeps
