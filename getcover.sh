@@ -2,7 +2,10 @@
 
 checkdeps() {
 	local deps
-	deps="awk wget xxd crc32"
+    # on windows git bash must download:
+    # CRC32: http://esrg.sourceforge.net/utils_win_up/md5sum/crc32.exe to "C:\Program Files\Git\usr\bin"
+    # WGET: https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
+	deps="awk wget xxd crc32 sed"
 	unameOut="$(uname -s)"
 	case "${unameOut}" in
 	CYGWIN* | MINGW*)
