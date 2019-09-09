@@ -8,7 +8,7 @@ The boxarts are compatible with [TWiLightMenu++](https://github.com/RocketRobz/T
 
 ## Requirements
 
-To run, `getcover` requires `awk`, `wget` and `xxd`.
+To run, `getcover` requires `awk`, `wget`, `xxd`, `sed` and `crc32`.
 
 -----
 
