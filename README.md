@@ -2,27 +2,30 @@
 
 `getcover` is a Bash script that fetches the boxart of Nintendo DS games.
 
-The boxarts are compatible with [TWiLightMenu++](https://github.com/RocketRobz/TWiLightMenu), and are courtesy of [GameTDB](https://gametdb.com).
+The boxarts are compatible with [TWiLightMenu++], and are courtesy of [GameTDB].
 
 -----
 
 ## Requirements
 
-To run, `getcover` requires `awk`, `wget` and `xxd`.
+To run, `getcover` requires `wget`.
 
 -----
 
 ## Usage
 
-Running `getcover` without arguments will result in a brief usage message:
+Running `getcover` without arguments will display a brief usage message:
 
-    Usage: getcover titleID | rom.nds [titleID | rom.nds ...]
+    Usage: getcover titleid | ndsfile [titleid | ndsfile ...]
 
-A titleID is a DS game's four-letter identifier.
-For example, `AXFP` is the titleID of _Final Fantasy XII: Revenant Wings (EUR)_.
+A title ID is a DS game's four-letter identifier, and `getcover` will ignore
+its case. Thus, `axfp`, `AXFP` and `aXfP` will be evaluated the same.
 
-You can supply titleIDs and actual `.nds` files. `getcover` is case insensitive.
-If an `.nds` file is specified, the titleID will be obtained automatically.
+On the other hand, DS ROMs must end with the `.nds` extension. If you supply
+a ROM, `getcover` will try to parse it to obtain its game ID automatically.
+
+To download multiple covers, you can provide as many title IDs and/or ROMs in a
+go as you wish, and mixing the two is allowed.
 
 **Boxarts will be placed inside the current directory.**
 
@@ -35,9 +38,15 @@ Before contributing:
 * analyze your code with `shellcheck` and address the possible warnings;
 * make sure all indentations are 4-spaces wide.
 
+AI-generated code will be rejected.
+
 -----
 
 ## License
 
 This project is licensed under the terms of the BSD-3-Clause license.
-See the [LICENSE](LICENSE) file for details.
+See the [LICENSE] file for details.
+
+[TWiLightMenu++]:https://github.com/RocketRobz/TWiLightMenu
+[GameTDB]:https://gametdb.com
+[LICENSE]:./LICENSE
