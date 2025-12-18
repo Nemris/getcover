@@ -44,7 +44,7 @@ AI-generated code will be rejected.
 
 ## License
 
-This project is licensed under the terms of the BSD-3-Clause license.
+This project is licensed under the terms of the MIT license.
 See the [LICENSE] file for details.
 
 [TWiLightMenu++]:https://github.com/RocketRobz/TWiLightMenu
